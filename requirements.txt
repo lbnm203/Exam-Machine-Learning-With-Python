@@ -1,0 +1,16 @@
+streamlit
+pandas
+mlflow
+matplotlib
+seaborn
+scikit-learn
+mlflow
+streamlit-drawable-canvas==0.8.0
+dagshub
+opencv-python-headless
+plotly
+kaleido
+keras
+tensorflow
+stqdm
+# libgl1-mesa-glx
