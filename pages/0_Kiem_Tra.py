@@ -1,39 +1,36 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
 
-from services.utils.training import mlflow_input
-from services.utils.show_mlflow import show_experiment_selector
+from services.utils.demo import demo_tab
+from services.utils.process import process_input
+from services.utils.training import train_process
 
 
 def main():
-    st.title('Machine Learning With Python')
-    data_pages, theory, train, demo, mlflow_p = st.tabs(
-        ["Tập dữ liệu", "Thông tin", "Huấn Luyện", "Demo", "MLflow Tracking"])
+    st.title('Alphabet Recognition')
+    data_process, train, demo, mlflow_p = st.tabs(
+        ["Tiền xử lý dữ liệu", "Huấn Luyện", "Dự Đoán", "MLflow"])
 
-    # --------------- Data MNIST ---------------
-    with data_pages:
-        # X, y = mnist_dataset()
-        pass
-
-    # -------- Theory Decision Tree - SVM ---------
-    with theory:
-        # neural_network()
-        pass
+    # --------------- Data Processing ---------------
+    with data_process:
+        data_X, data_y = process_input()
+        if data_X is not None and data_y is not None:
+            st.session_state['data_X'] = data_X
+            st.session_state['data_y'] = data_y
 
     # --------------- Training ---------------
     with train:
-        # train_process(X, y)
-        mlflow_input()
-        # pass
+        train_process()
 
-    # --------------- DEMO MNIST ---------------
+    # --------------- DEMO Alphabet ---------------
     with demo:
-        # demo_app()
-        pass
+        demo_tab()
 
     # --------------- MLflow Tracking ---------------
     with mlflow_p:
-        show_experiment_selector()
+        pass
 
 
 if __name__ == '__main__':
